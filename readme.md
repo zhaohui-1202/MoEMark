@@ -1,110 +1,127 @@
 # MoEMark
 
-本地保留一套主模型代码，在原训练服务器运行。评测配置为**普通登记端 + Top-2 多专家检测端 + 图像绑定 + 几何类别绑定**，使用 6 个北京评价图层、20 张版权图像及 42、73、101 三个检测器种子。
+**Robust zero-watermarking for vector geographic data through asymmetric registration and attack-guided expert detection.**
 
-GitHub 仓库包含代码、评测协议、依赖清单和本说明。模型权重、地图原始数据、版权图像、密钥、实验结果及论文文件不随仓库上传。下方目录中的 `结果/` 和 `论文/` 为本地已有目录。
+MoEMark establishes copyright evidence for point, polyline, and polygon layers without modifying their geometry. A single-branch registration encoder defines a reference identity, while a mixture-of-experts detector recovers that identity from geometrically modified maps. This repository provides the core models, registration and verification interface, robustness evaluation, and map and copyright-image discriminability analysis.
 
-## 目录
+## Method overview
 
-```text
-代码/
-  运行评测.py          统一入口：检查、评测、登记、验证、绘图
-  绘制结果.py          NC/BCR 折线图和两种可区分性热图
-  requirements.txt     Python 依赖
-  评测协议/single92.json
-  主模型/
-    models.py          普通登记编码器、多专家检测器
-    pipeline.py        权重加载、特征提取、登记与验证
-    evaluate.py        鲁棒性及可区分性评测
-    image_binding.py
-    map_geometry_binding.py
-    shared/            原实现中必需的几何处理、攻击和冻结编码器
-结果/                  已有实验结果，以及重新绘图的输出
-论文/                  已有论文文件
-```
+### Asymmetric registration and detection
 
-对比方法、消融、试验性变体和旧汇总脚本已从 `代码` 中移除。`shared` 保留部分原模块名以维持依赖关系，但不含原来的实验运行入口。服务器权重路径中的 `ablation` 是既有目录名，当前读取的是最终模型的权重，不会运行消融实验。
+A shared map representation combines local geometry, multiscale spatial context, and layer-level statistics. During registration, a single-branch encoder maps this representation to a reference identity. A shared feature mapping conditions the identity on a copyright image to construct the registered zero-watermark.
 
-## 环境与资产
+During verification, the detector adapts to the geometry of the candidate map and recovers an identity compatible with the registration reference. The same registered zero-watermark supports verification under different attack conditions.
 
-完整评测使用原服务器的 Linux、CUDA 和 PyTorch 环境。沿用已安装且与 CUDA 匹配的 PyTorch/torchvision；缺少其他依赖时参考 `代码/requirements.txt` 补齐。几何处理需要 Shapely 2。仅绘图需要 NumPy 和 Matplotlib，不需要 GPU。
+![Overview of the asymmetric registration and detection framework in MoEMark.](docs/assets/moemark-overview.png)
 
-默认资产根目录：
+### Attack-guided expert learning
 
-```text
-/root/autodl-tmp/vector_zw_20261020
-```
+The detector combines an always-active general expert with three specialists. The specialists learn recovery functions for vertex edits, feature deletion, and other geometric disturbances. A geometry-dependent router selects two specialists and combines their corrections with the general expert through weighted residual aggregation. Verification uses the candidate geometry without requiring attack labels.
 
-需要保留该目录下已有的地图及版权图像、原绑定密钥、干净地图特征缓存、图像特征库、共享几何编码器、图像编码器和三个种子的最终模型。代码不包含这些资产，也不会重新生成密钥或训练权重。`--stage check` 会列出缺失文件。
+Cross-stage alignment guides both candidate map identities and copyright-conditioned feature vectors toward their fixed registration targets. The registration branch and shared feature mapping remain frozen during detector training.
 
-把整个 `代码` 文件夹上传到服务器的独立目录，例如 `/root/autodl-tmp/MoEMark/代码`；不要覆盖原模型资产目录。以下命令在该文件夹中执行。
+![Attack-guided expert training and cross-stage identity alignment.](docs/assets/expert-learning-alignment.png)
 
-## 运行
+### Identity binding and zero-watermark verification
 
-检查依赖与资产，不需要 GPU：
+The copyright-conditioned feature vector is binarised and combined with a binary copyright payload and keyed binding codes by exclusive OR (XOR). Separate codes bind the registered zero-watermark to the copyright image and geometry category.
 
-```bash
-python 运行评测.py --stage check
-```
+Verification derives the candidate binary feature sequence, recovers the watermark using the stored registration record, and compares it with the payload of the claimed copyright image. Normalised correlation (NC) measures the similarity between the recovered and reference binary watermarks; bit-correct rate (BCR) measures the proportion of correctly recovered bits.
 
-开启 GPU 后，完整运行鲁棒性、可区分性并输出 PNG：
+## Code structure
 
-```bash
-python 运行评测.py --stage all --workers 6
-```
+| Component | Main files and purpose |
+| --- | --- |
+| Entry point | `代码/运行评测.py`: evaluation, registration, verification, and plotting commands |
+| Models | `代码/主模型/models.py`: single-branch registration encoder and mixture-of-experts detector |
+| Inference | `代码/主模型/pipeline.py`: checkpoint loading, feature extraction, registration, and verification |
+| Identity binding | `代码/主模型/image_binding.py` and `map_geometry_binding.py`: copyright-image and geometry-category codes |
+| Shared representation and attacks | `代码/主模型/shared/`: geometry preprocessing, frozen encoders, feature mapping, and geometric attacks |
+| Evaluation | `代码/主模型/evaluate.py` and `代码/评测协议/single92.json`: robustness and discriminability evaluation |
+| Visualisation | `代码/绘制结果.py`: NC/BCR curves and discriminability heatmaps |
+| Method diagrams | `docs/assets/`: framework overview and expert-learning illustration |
 
-分别运行：
+## Data and checkpoints
+
+The evaluation protocol uses six vector layers derived from [OpenStreetMap](https://www.openstreetmap.org/copyright), 20 copyright images, and three detector seeds (42, 73, and 101). Each evaluation map is paired with every copyright image. Robustness is evaluated across 92 attack settings covering coordinate perturbations, geometric transformations, structural edits, and changes in data representation.
+
+Organise the dataset manifest, Shapefiles, copyright images, trained checkpoints, feature caches, and binding key under a common asset directory. Specify this directory with `--root`; asset paths are defined in `代码/主模型/pipeline.py`. Keep all component files of each Shapefile together.
+
+## Environment
+
+Use Python 3.11 on Linux. The implementation uses PyTorch, torchvision, NumPy, SciPy, GeoPandas, Shapely, and Matplotlib. Clone the repository and install the dependencies:
 
 ```bash
-python 运行评测.py --stage robustness --workers 6
-python 运行评测.py --stage discriminability
+git clone https://github.com/zhaohui-1202/MoEMark.git
+cd MoEMark
+python -m pip install -r 代码/requirements.txt
 ```
 
-先用一个攻击设置检查运行环境：
+See [requirements.txt](代码/requirements.txt) for dependency versions.
+
+## Basic usage
+
+Register a vector layer with a copyright image:
 
 ```bash
-python 运行评测.py --stage robustness --case-ids 1 --workers 2
+python 代码/运行评测.py \
+  --stage register \
+  --root /path/to/moemark_assets \
+  --seed 42 \
+  --map maps/original.shp \
+  --image images/logo.png \
+  --record outputs/registration.json
 ```
 
-局部评测输出 `robustness_subset.json/csv`，不会被标记为完整 92 档结果。随后执行完整命令可以继续完成剩余设置。默认输出到资产根目录的 `results/moemark_final_evaluation`；可通过 `--root` 指定资产根目录，通过 `--output` 指定新的结果目录。程序检查输入与模型标识后复用已完成的逐条记录，不覆盖原历史结果目录。
-
-主要输出：
-
-- `robustness.json/csv`：92 档攻击的 NC、BCR 和样本数。
-- `records/`：逐条攻击记录、各种子得分及无效几何说明。
-- `discriminability.json`：6×6 地图矩阵、20×20 版权图像矩阵。
-- `figures/robustness_nc_bcr.png`：同图显示 NC 与 BCR。
-- `figures/map_discriminability.png`、`figures/copyright_image_discriminability.png`：可区分性热图。
-
-NC 为恢复的二值水印与参考水印的余弦相似度，BCR 为正确比特比例。载荷处理为灰度、NEAREST 16×16、阈值 128。鲁棒性先对重复和图像/种子求均值，再对各设置内的有效图层等权平均，最后对 92 个设置等权平均。无效几何记录单独保留。攻击 `source_id`、原语料排序及随机种子规则保持不变。
-
-## 不开 GPU 重画已有结果
-
-服务器已有本套评测输出时：
+Verify a candidate using the corresponding model and registration record:
 
 ```bash
-python 运行评测.py --stage plots
+python 代码/运行评测.py \
+  --stage verify \
+  --root /path/to/moemark_assets \
+  --seed 42 \
+  --map maps/candidate.shp \
+  --image images/logo.png \
+  --record outputs/registration.json
 ```
 
-在本地项目根目录，读取已有论文评测结果绘图：
+The interface reports NC, BCR, the number of matching bits, and the acceptance decision. The copyright payload is obtained by converting the image to grayscale, resizing it to 16 × 16 with nearest-neighbour interpolation, and applying an intensity threshold of 128.
 
-```powershell
-python 代码/运行评测.py --stage plots --published-results 结果 --output 结果/主模型_重新绘图
-```
+## Evaluation
 
-这条命令只读取 `01_主模型鲁棒性` 和 `02_版权图像与地图区分`，不依赖对比实验或消融结果，也不会重新计算模型得分。图像均为 PNG。
-
-## 单个地图的登记与验证
-
-在服务器开启 GPU 后，使用同一种子的模型和同一份登记记录：
+Run robustness and discriminability evaluation together:
 
 ```bash
-python 运行评测.py --stage register --seed 42 --map /path/original.shp --image /path/copyright.png --record /path/registration.json
-python 运行评测.py --stage verify --seed 42 --map /path/candidate.shp --image /path/copyright.png --record /path/registration.json
+python 代码/运行评测.py \
+  --stage all \
+  --root /path/to/moemark_assets \
+  --output outputs/evaluation \
+  --workers 6
 ```
 
-验证返回 NC、BCR、匹配比特数和接受/拒绝结果，并检查模型、图像编码器、绑定协议及载荷版本。
+Use `--stage robustness` or `--stage discriminability` to run either evaluation separately.
 
-## 本次验证范围
+- **Robustness:** evaluates watermark recovery across 92 attack settings and reports NC and BCR. Results are averaged within each map and then across applicable maps and attack settings.
+- **Map discriminability:** constructs a 6 × 6 registered-map versus candidate-map matrix, averaged over the copyright images and detector seeds.
+- **Copyright-image discriminability:** constructs a 20 × 20 registered-image versus candidate-image matrix, averaged over the evaluation maps and detector seeds.
 
-已完成语法和本地依赖检查、登记编码器与检测器的 CPU 数值一致性检查、共享地图表征一致性检查，并实际重画了已有结果的三张 PNG。完整的服务器 CUDA 评测尚未重跑；开启 GPU 后先执行上述单设置命令，再运行全量评测。
+| Output | Description |
+| --- | --- |
+| `robustness.json` and `robustness.csv` | Per-setting NC, BCR, and evaluation counts |
+| `records/` | Individual attack records and per-seed scores |
+| `discriminability.json` | Map and copyright-image discriminability matrices |
+| `figures/robustness_nc_bcr.png` | NC and BCR across attack strengths |
+| `figures/map_discriminability.png` | Map discriminability heatmap |
+| `figures/copyright_image_discriminability.png` | Copyright-image discriminability heatmap |
+
+Regenerate figures from a completed evaluation:
+
+```bash
+python 代码/运行评测.py --stage plots --output outputs/evaluation
+```
+
+For the complete command-line options:
+
+```bash
+python 代码/运行评测.py --help
+```

@@ -2,6 +2,12 @@
 !/.gitignore
 !/readme.md
 !/代码/
+!/docs/
+/docs/*
+!/docs/assets/
+/docs/assets/*
+!/docs/assets/moemark-overview.png
+!/docs/assets/expert-learning-alignment.png
 /代码/**/__pycache__/
 /代码/**/*.py[cod]
 /代码/**/*.key
