@@ -125,3 +125,7 @@ For the complete command-line options:
 ```bash
 python src/run_evaluation.py --help
 ```
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
