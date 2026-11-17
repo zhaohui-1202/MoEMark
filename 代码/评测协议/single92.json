@@ -1,0 +1,1427 @@
+{
+  "cases": [
+    {
+      "id": 1,
+      "source_id": 1,
+      "name": "gaussian_noise__L1",
+      "op": {
+        "name": "gaussian_noise",
+        "sigma_ratio": 0.001
+      },
+      "repeats": 5,
+      "applies": [
+        "point",
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 2,
+      "source_id": 2,
+      "name": "gaussian_noise__L2",
+      "op": {
+        "name": "gaussian_noise",
+        "sigma_ratio": 0.0025
+      },
+      "repeats": 5,
+      "applies": [
+        "point",
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 3,
+      "source_id": 3,
+      "name": "gaussian_noise__L3",
+      "op": {
+        "name": "gaussian_noise",
+        "sigma_ratio": 0.005
+      },
+      "repeats": 5,
+      "applies": [
+        "point",
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 4,
+      "source_id": 4,
+      "name": "gaussian_noise__L4",
+      "op": {
+        "name": "gaussian_noise",
+        "sigma_ratio": 0.0075
+      },
+      "repeats": 5,
+      "applies": [
+        "point",
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 5,
+      "source_id": 5,
+      "name": "gaussian_noise__L5",
+      "op": {
+        "name": "gaussian_noise",
+        "sigma_ratio": 0.01
+      },
+      "repeats": 5,
+      "applies": [
+        "point",
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 6,
+      "source_id": 6,
+      "name": "uniform_noise__L1",
+      "op": {
+        "name": "uniform_noise",
+        "sigma_ratio": 0.001
+      },
+      "repeats": 5,
+      "applies": [
+        "point",
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 7,
+      "source_id": 7,
+      "name": "uniform_noise__L2",
+      "op": {
+        "name": "uniform_noise",
+        "sigma_ratio": 0.0025
+      },
+      "repeats": 5,
+      "applies": [
+        "point",
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 8,
+      "source_id": 8,
+      "name": "uniform_noise__L3",
+      "op": {
+        "name": "uniform_noise",
+        "sigma_ratio": 0.005
+      },
+      "repeats": 5,
+      "applies": [
+        "point",
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 9,
+      "source_id": 9,
+      "name": "uniform_noise__L4",
+      "op": {
+        "name": "uniform_noise",
+        "sigma_ratio": 0.0075
+      },
+      "repeats": 5,
+      "applies": [
+        "point",
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 10,
+      "source_id": 10,
+      "name": "uniform_noise__L5",
+      "op": {
+        "name": "uniform_noise",
+        "sigma_ratio": 0.01
+      },
+      "repeats": 5,
+      "applies": [
+        "point",
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 11,
+      "source_id": 11,
+      "name": "outlier_noise__L1",
+      "op": {
+        "name": "outlier_noise",
+        "fraction": 0.001,
+        "distance_ratio": 0.05
+      },
+      "repeats": 5,
+      "applies": [
+        "point",
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 12,
+      "source_id": 12,
+      "name": "outlier_noise__L2",
+      "op": {
+        "name": "outlier_noise",
+        "fraction": 0.0025,
+        "distance_ratio": 0.05
+      },
+      "repeats": 5,
+      "applies": [
+        "point",
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 13,
+      "source_id": 13,
+      "name": "outlier_noise__L3",
+      "op": {
+        "name": "outlier_noise",
+        "fraction": 0.005,
+        "distance_ratio": 0.05
+      },
+      "repeats": 5,
+      "applies": [
+        "point",
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 14,
+      "source_id": 14,
+      "name": "outlier_noise__L4",
+      "op": {
+        "name": "outlier_noise",
+        "fraction": 0.01,
+        "distance_ratio": 0.05
+      },
+      "repeats": 5,
+      "applies": [
+        "point",
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 15,
+      "source_id": 15,
+      "name": "outlier_noise__L5",
+      "op": {
+        "name": "outlier_noise",
+        "fraction": 0.02,
+        "distance_ratio": 0.05
+      },
+      "repeats": 5,
+      "applies": [
+        "point",
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 16,
+      "source_id": 16,
+      "name": "vertex_add_0.1",
+      "op": {
+        "name": "vertex_add",
+        "fraction": 0.1
+      },
+      "repeats": 3,
+      "applies": [
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 17,
+      "source_id": 17,
+      "name": "vertex_add_0.2",
+      "op": {
+        "name": "vertex_add",
+        "fraction": 0.2
+      },
+      "repeats": 3,
+      "applies": [
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 18,
+      "source_id": 18,
+      "name": "vertex_add_0.3",
+      "op": {
+        "name": "vertex_add",
+        "fraction": 0.3
+      },
+      "repeats": 3,
+      "applies": [
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 19,
+      "source_id": 19,
+      "name": "vertex_add_0.4",
+      "op": {
+        "name": "vertex_add",
+        "fraction": 0.4
+      },
+      "repeats": 3,
+      "applies": [
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 20,
+      "source_id": 20,
+      "name": "vertex_add_0.5",
+      "op": {
+        "name": "vertex_add",
+        "fraction": 0.5
+      },
+      "repeats": 3,
+      "applies": [
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 21,
+      "source_id": 21,
+      "name": "vertex_delete_0.05",
+      "op": {
+        "name": "vertex_delete",
+        "fraction": 0.05
+      },
+      "repeats": 3,
+      "applies": [
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 22,
+      "source_id": 22,
+      "name": "vertex_delete_0.1",
+      "op": {
+        "name": "vertex_delete",
+        "fraction": 0.1
+      },
+      "repeats": 3,
+      "applies": [
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 23,
+      "source_id": 23,
+      "name": "vertex_delete_0.15",
+      "op": {
+        "name": "vertex_delete",
+        "fraction": 0.15
+      },
+      "repeats": 3,
+      "applies": [
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 24,
+      "source_id": 24,
+      "name": "vertex_delete_0.2",
+      "op": {
+        "name": "vertex_delete",
+        "fraction": 0.2
+      },
+      "repeats": 3,
+      "applies": [
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 25,
+      "source_id": 25,
+      "name": "vertex_delete_0.3",
+      "op": {
+        "name": "vertex_delete",
+        "fraction": 0.3
+      },
+      "repeats": 3,
+      "applies": [
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 26,
+      "source_id": 26,
+      "name": "delete_0.1",
+      "op": {
+        "name": "delete",
+        "fraction": 0.1
+      },
+      "repeats": 3,
+      "applies": [
+        "point",
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 27,
+      "source_id": 27,
+      "name": "delete_0.2",
+      "op": {
+        "name": "delete",
+        "fraction": 0.2
+      },
+      "repeats": 3,
+      "applies": [
+        "point",
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 28,
+      "source_id": 28,
+      "name": "delete_0.3",
+      "op": {
+        "name": "delete",
+        "fraction": 0.3
+      },
+      "repeats": 3,
+      "applies": [
+        "point",
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 29,
+      "source_id": 29,
+      "name": "delete_0.4",
+      "op": {
+        "name": "delete",
+        "fraction": 0.4
+      },
+      "repeats": 3,
+      "applies": [
+        "point",
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 30,
+      "source_id": 30,
+      "name": "delete_0.5",
+      "op": {
+        "name": "delete",
+        "fraction": 0.5
+      },
+      "repeats": 3,
+      "applies": [
+        "point",
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 31,
+      "source_id": 31,
+      "name": "rotate__L1",
+      "op": {
+        "name": "rotate",
+        "degrees": 15
+      },
+      "repeats": 1,
+      "applies": [
+        "point",
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 32,
+      "source_id": 32,
+      "name": "rotate__L2",
+      "op": {
+        "name": "rotate",
+        "degrees": 30
+      },
+      "repeats": 1,
+      "applies": [
+        "point",
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 33,
+      "source_id": 33,
+      "name": "rotate__L3",
+      "op": {
+        "name": "rotate",
+        "degrees": 45
+      },
+      "repeats": 1,
+      "applies": [
+        "point",
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 34,
+      "source_id": 34,
+      "name": "rotate__L4",
+      "op": {
+        "name": "rotate",
+        "degrees": 90
+      },
+      "repeats": 1,
+      "applies": [
+        "point",
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 35,
+      "source_id": 35,
+      "name": "rotate__L5",
+      "op": {
+        "name": "rotate",
+        "degrees": 180
+      },
+      "repeats": 1,
+      "applies": [
+        "point",
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 36,
+      "source_id": 36,
+      "name": "translate_x_L1",
+      "op": {
+        "name": "translate",
+        "ratio": 0.1,
+        "axis": "x"
+      },
+      "repeats": 1,
+      "applies": [
+        "point",
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 37,
+      "source_id": 37,
+      "name": "translate_x_L2",
+      "op": {
+        "name": "translate",
+        "ratio": 0.2,
+        "axis": "x"
+      },
+      "repeats": 1,
+      "applies": [
+        "point",
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 38,
+      "source_id": 38,
+      "name": "translate_x_L3",
+      "op": {
+        "name": "translate",
+        "ratio": 0.3,
+        "axis": "x"
+      },
+      "repeats": 1,
+      "applies": [
+        "point",
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 39,
+      "source_id": 39,
+      "name": "translate_x_L4",
+      "op": {
+        "name": "translate",
+        "ratio": 0.4,
+        "axis": "x"
+      },
+      "repeats": 1,
+      "applies": [
+        "point",
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 40,
+      "source_id": 40,
+      "name": "translate_x_L5",
+      "op": {
+        "name": "translate",
+        "ratio": 0.5,
+        "axis": "x"
+      },
+      "repeats": 1,
+      "applies": [
+        "point",
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 41,
+      "source_id": 41,
+      "name": "translate_y_L1",
+      "op": {
+        "name": "translate",
+        "ratio": 0.1,
+        "axis": "y"
+      },
+      "repeats": 1,
+      "applies": [
+        "point",
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 42,
+      "source_id": 42,
+      "name": "translate_y_L2",
+      "op": {
+        "name": "translate",
+        "ratio": 0.2,
+        "axis": "y"
+      },
+      "repeats": 1,
+      "applies": [
+        "point",
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 43,
+      "source_id": 43,
+      "name": "translate_y_L3",
+      "op": {
+        "name": "translate",
+        "ratio": 0.3,
+        "axis": "y"
+      },
+      "repeats": 1,
+      "applies": [
+        "point",
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 44,
+      "source_id": 44,
+      "name": "translate_y_L4",
+      "op": {
+        "name": "translate",
+        "ratio": 0.4,
+        "axis": "y"
+      },
+      "repeats": 1,
+      "applies": [
+        "point",
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 45,
+      "source_id": 45,
+      "name": "translate_y_L5",
+      "op": {
+        "name": "translate",
+        "ratio": 0.5,
+        "axis": "y"
+      },
+      "repeats": 1,
+      "applies": [
+        "point",
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 46,
+      "source_id": 46,
+      "name": "translate_diagonal_L1",
+      "op": {
+        "name": "translate",
+        "ratio": 0.1,
+        "axis": "diagonal"
+      },
+      "repeats": 1,
+      "applies": [
+        "point",
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 47,
+      "source_id": 47,
+      "name": "translate_diagonal_L2",
+      "op": {
+        "name": "translate",
+        "ratio": 0.2,
+        "axis": "diagonal"
+      },
+      "repeats": 1,
+      "applies": [
+        "point",
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 48,
+      "source_id": 48,
+      "name": "translate_diagonal_L3",
+      "op": {
+        "name": "translate",
+        "ratio": 0.3,
+        "axis": "diagonal"
+      },
+      "repeats": 1,
+      "applies": [
+        "point",
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 49,
+      "source_id": 49,
+      "name": "translate_diagonal_L4",
+      "op": {
+        "name": "translate",
+        "ratio": 0.4,
+        "axis": "diagonal"
+      },
+      "repeats": 1,
+      "applies": [
+        "point",
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 50,
+      "source_id": 50,
+      "name": "translate_diagonal_L5",
+      "op": {
+        "name": "translate",
+        "ratio": 0.5,
+        "axis": "diagonal"
+      },
+      "repeats": 1,
+      "applies": [
+        "point",
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 51,
+      "source_id": 51,
+      "name": "scale__L1",
+      "op": {
+        "name": "scale",
+        "factor": 0.5
+      },
+      "repeats": 1,
+      "applies": [
+        "point",
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 52,
+      "source_id": 52,
+      "name": "scale__L2",
+      "op": {
+        "name": "scale",
+        "factor": 0.75
+      },
+      "repeats": 1,
+      "applies": [
+        "point",
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 53,
+      "source_id": 53,
+      "name": "scale__L3",
+      "op": {
+        "name": "scale",
+        "factor": 1.25
+      },
+      "repeats": 1,
+      "applies": [
+        "point",
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 54,
+      "source_id": 54,
+      "name": "scale__L4",
+      "op": {
+        "name": "scale",
+        "factor": 1.5
+      },
+      "repeats": 1,
+      "applies": [
+        "point",
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 55,
+      "source_id": 55,
+      "name": "scale__L5",
+      "op": {
+        "name": "scale",
+        "factor": 2.0
+      },
+      "repeats": 1,
+      "applies": [
+        "point",
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 56,
+      "source_id": 56,
+      "name": "shear_x_L1",
+      "op": {
+        "name": "shear",
+        "degrees": 1,
+        "axis": "x"
+      },
+      "repeats": 1,
+      "applies": [
+        "point",
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 57,
+      "source_id": 57,
+      "name": "shear_x_L2",
+      "op": {
+        "name": "shear",
+        "degrees": 3,
+        "axis": "x"
+      },
+      "repeats": 1,
+      "applies": [
+        "point",
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 58,
+      "source_id": 58,
+      "name": "shear_x_L3",
+      "op": {
+        "name": "shear",
+        "degrees": 5,
+        "axis": "x"
+      },
+      "repeats": 1,
+      "applies": [
+        "point",
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 59,
+      "source_id": 59,
+      "name": "shear_x_L4",
+      "op": {
+        "name": "shear",
+        "degrees": 10,
+        "axis": "x"
+      },
+      "repeats": 1,
+      "applies": [
+        "point",
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 60,
+      "source_id": 60,
+      "name": "shear_x_L5",
+      "op": {
+        "name": "shear",
+        "degrees": 15,
+        "axis": "x"
+      },
+      "repeats": 1,
+      "applies": [
+        "point",
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 61,
+      "source_id": 61,
+      "name": "shear_y_L1",
+      "op": {
+        "name": "shear",
+        "degrees": 1,
+        "axis": "y"
+      },
+      "repeats": 1,
+      "applies": [
+        "point",
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 62,
+      "source_id": 62,
+      "name": "shear_y_L2",
+      "op": {
+        "name": "shear",
+        "degrees": 3,
+        "axis": "y"
+      },
+      "repeats": 1,
+      "applies": [
+        "point",
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 63,
+      "source_id": 63,
+      "name": "shear_y_L3",
+      "op": {
+        "name": "shear",
+        "degrees": 5,
+        "axis": "y"
+      },
+      "repeats": 1,
+      "applies": [
+        "point",
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 64,
+      "source_id": 64,
+      "name": "shear_y_L4",
+      "op": {
+        "name": "shear",
+        "degrees": 10,
+        "axis": "y"
+      },
+      "repeats": 1,
+      "applies": [
+        "point",
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 65,
+      "source_id": 65,
+      "name": "shear_y_L5",
+      "op": {
+        "name": "shear",
+        "degrees": 15,
+        "axis": "y"
+      },
+      "repeats": 1,
+      "applies": [
+        "point",
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 66,
+      "source_id": 66,
+      "name": "feature_jitter__L1",
+      "op": {
+        "name": "feature_jitter",
+        "sigma_ratio": 0.01
+      },
+      "repeats": 5,
+      "applies": [
+        "point",
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 67,
+      "source_id": 67,
+      "name": "feature_jitter__L2",
+      "op": {
+        "name": "feature_jitter",
+        "sigma_ratio": 0.02
+      },
+      "repeats": 5,
+      "applies": [
+        "point",
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 68,
+      "source_id": 68,
+      "name": "feature_jitter__L3",
+      "op": {
+        "name": "feature_jitter",
+        "sigma_ratio": 0.03
+      },
+      "repeats": 5,
+      "applies": [
+        "point",
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 69,
+      "source_id": 69,
+      "name": "feature_jitter__L4",
+      "op": {
+        "name": "feature_jitter",
+        "sigma_ratio": 0.04
+      },
+      "repeats": 5,
+      "applies": [
+        "point",
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 70,
+      "source_id": 70,
+      "name": "feature_jitter__L5",
+      "op": {
+        "name": "feature_jitter",
+        "sigma_ratio": 0.05
+      },
+      "repeats": 5,
+      "applies": [
+        "point",
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 71,
+      "source_id": 71,
+      "name": "simplify__L1",
+      "op": {
+        "name": "simplify",
+        "tolerance_ratio": 0.005
+      },
+      "repeats": 1,
+      "applies": [
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 72,
+      "source_id": 72,
+      "name": "simplify__L2",
+      "op": {
+        "name": "simplify",
+        "tolerance_ratio": 0.01
+      },
+      "repeats": 1,
+      "applies": [
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 73,
+      "source_id": 73,
+      "name": "simplify__L3",
+      "op": {
+        "name": "simplify",
+        "tolerance_ratio": 0.02
+      },
+      "repeats": 1,
+      "applies": [
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 74,
+      "source_id": 74,
+      "name": "simplify__L4",
+      "op": {
+        "name": "simplify",
+        "tolerance_ratio": 0.03
+      },
+      "repeats": 1,
+      "applies": [
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 75,
+      "source_id": 75,
+      "name": "simplify__L5",
+      "op": {
+        "name": "simplify",
+        "tolerance_ratio": 0.05
+      },
+      "repeats": 1,
+      "applies": [
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 76,
+      "source_id": 76,
+      "name": "quantize__L1",
+      "op": {
+        "name": "quantize",
+        "step_ratio": 0.001
+      },
+      "repeats": 1,
+      "applies": [
+        "point",
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 77,
+      "source_id": 77,
+      "name": "quantize__L2",
+      "op": {
+        "name": "quantize",
+        "step_ratio": 0.0025
+      },
+      "repeats": 1,
+      "applies": [
+        "point",
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 78,
+      "source_id": 78,
+      "name": "quantize__L3",
+      "op": {
+        "name": "quantize",
+        "step_ratio": 0.005
+      },
+      "repeats": 1,
+      "applies": [
+        "point",
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 79,
+      "source_id": 79,
+      "name": "quantize__L4",
+      "op": {
+        "name": "quantize",
+        "step_ratio": 0.0075
+      },
+      "repeats": 1,
+      "applies": [
+        "point",
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 80,
+      "source_id": 80,
+      "name": "quantize__L5",
+      "op": {
+        "name": "quantize",
+        "step_ratio": 0.01
+      },
+      "repeats": 1,
+      "applies": [
+        "point",
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 81,
+      "source_id": 81,
+      "name": "quantize_valid__L1",
+      "op": {
+        "name": "quantize_valid",
+        "step_ratio": 0.001
+      },
+      "repeats": 1,
+      "applies": [
+        "point",
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 82,
+      "source_id": 82,
+      "name": "quantize_valid__L2",
+      "op": {
+        "name": "quantize_valid",
+        "step_ratio": 0.0025
+      },
+      "repeats": 1,
+      "applies": [
+        "point",
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 83,
+      "source_id": 83,
+      "name": "quantize_valid__L3",
+      "op": {
+        "name": "quantize_valid",
+        "step_ratio": 0.005
+      },
+      "repeats": 1,
+      "applies": [
+        "point",
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 84,
+      "source_id": 84,
+      "name": "quantize_valid__L4",
+      "op": {
+        "name": "quantize_valid",
+        "step_ratio": 0.0075
+      },
+      "repeats": 1,
+      "applies": [
+        "point",
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 85,
+      "source_id": 85,
+      "name": "quantize_valid__L5",
+      "op": {
+        "name": "quantize_valid",
+        "step_ratio": 0.01
+      },
+      "repeats": 1,
+      "applies": [
+        "point",
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 86,
+      "source_id": 86,
+      "name": "ring_start",
+      "op": {
+        "name": "ring_start"
+      },
+      "repeats": 5,
+      "applies": [
+        "polygon"
+      ]
+    },
+    {
+      "id": 87,
+      "source_id": 87,
+      "name": "part_order",
+      "op": {
+        "name": "part_order"
+      },
+      "repeats": 5,
+      "applies": [
+        "point",
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 88,
+      "source_id": 88,
+      "name": "rewrite",
+      "op": {
+        "name": "rewrite"
+      },
+      "repeats": 5,
+      "applies": [
+        "point",
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 89,
+      "source_id": 91,
+      "name": "mirror_xy",
+      "op": {
+        "name": "mirror",
+        "axis": "xy"
+      },
+      "repeats": 1,
+      "applies": [
+        "point",
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 90,
+      "source_id": 92,
+      "name": "vertex_reverse",
+      "op": {
+        "name": "vertex_reverse"
+      },
+      "repeats": 1,
+      "applies": [
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 91,
+      "source_id": 93,
+      "name": "object_reverse",
+      "op": {
+        "name": "object_reverse"
+      },
+      "repeats": 1,
+      "applies": [
+        "point",
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": 92,
+      "source_id": 94,
+      "name": "object_shuffle",
+      "op": {
+        "name": "reorder"
+      },
+      "repeats": 3,
+      "applies": [
+        "point",
+        "line",
+        "polygon"
+      ]
+    }
+  ],
+  "dev_ids": [
+    "beijing_buildings_20261019",
+    "beijing_forest_20261019",
+    "beijing_poi_20261019",
+    "beijing_railways_20261019",
+    "beijing_roads_20261019",
+    "beijing_water_20261019"
+  ],
+  "images20": [
+    "181.jpg",
+    "157.jpg",
+    "147.jpg",
+    "103.jpg",
+    "160.jpg",
+    "124.jpg",
+    "179.jpg",
+    "172.jpg",
+    "134.jpg",
+    "188.jpg",
+    "171.jpg",
+    "184.jpg",
+    "102.jpg",
+    "150.jpg",
+    "143.jpg",
+    "174.jpg",
+    "118.jpg",
+    "110.jpg",
+    "112.jpg",
+    "142.jpg"
+  ],
+  "detector_seeds": [
+    42,
+    73,
+    101
+  ],
+  "version": "moemark-single92-v1",
+  "note": "Original source_id and sorted corpus owner index are preserved for deterministic attack seeds."
+}
