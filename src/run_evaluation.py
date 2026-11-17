@@ -6,7 +6,7 @@ import sys
 from pathlib import Path
 
 HERE = Path(__file__).absolute().parent
-sys.path.insert(0, str(HERE / '主模型'))
+sys.path.insert(0, str(HERE / 'core'))
 
 
 def check_assets(root, protocol):
@@ -75,15 +75,15 @@ def main():
     args = p.parse_args()
     if args.workers < 1:
         p.error('--workers must be positive')
-    protocol_path = HERE / '评测协议' / 'single92.json'
+    protocol_path = HERE / 'protocols' / 'single92.json'
     protocol = json.loads(protocol_path.read_text(encoding='utf-8'))
     if args.case_ids and not set(args.case_ids) <= {c['id'] for c in protocol['cases']}:
         p.error('Unknown case ID')
     if args.stage == 'check':
         return 0 if check_assets(args.root, protocol) else 1
     if args.stage == 'plots':
-        from 绘制结果 import plot_results
-        output = args.output or (HERE.parent / '结果' / '主模型_重新绘图' if args.published_results else args.root / 'results/moemark_final_evaluation')
+        from plot_results import plot_results
+        output = args.output or (HERE.parent / 'outputs' / 'plots' if args.published_results else args.root / 'results/moemark_final_evaluation')
         plot_results(output, protocol, args.published_results)
         return 0
     output = args.output or args.root / 'results/moemark_final_evaluation'
@@ -117,7 +117,7 @@ def main():
             evaluation.discriminability()
         if args.stage in ['all', 'robustness']:
             evaluation.robustness(args.case_ids)
-        from 绘制结果 import plot_results
+        from plot_results import plot_results
         plot_results(output, protocol)
     return 0
 

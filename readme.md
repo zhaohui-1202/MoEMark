@@ -32,20 +32,20 @@ Verification derives the candidate binary feature sequence, recovers the waterma
 
 | Component | Main files and purpose |
 | --- | --- |
-| Entry point | `代码/运行评测.py`: evaluation, registration, verification, and plotting commands |
-| Models | `代码/主模型/models.py`: single-branch registration encoder and mixture-of-experts detector |
-| Inference | `代码/主模型/pipeline.py`: checkpoint loading, feature extraction, registration, and verification |
-| Identity binding | `代码/主模型/image_binding.py` and `map_geometry_binding.py`: copyright-image and geometry-category codes |
-| Shared representation and attacks | `代码/主模型/shared/`: geometry preprocessing, frozen encoders, feature mapping, and geometric attacks |
-| Evaluation | `代码/主模型/evaluate.py` and `代码/评测协议/single92.json`: robustness and discriminability evaluation |
-| Visualisation | `代码/绘制结果.py`: NC/BCR curves and discriminability heatmaps |
+| Entry point | `src/run_evaluation.py`: evaluation, registration, verification, and plotting commands |
+| Models | `src/core/models.py`: single-branch registration encoder and mixture-of-experts detector |
+| Inference | `src/core/pipeline.py`: checkpoint loading, feature extraction, registration, and verification |
+| Identity binding | `src/core/image_binding.py` and `map_geometry_binding.py`: copyright-image and geometry-category codes |
+| Shared representation and attacks | `src/core/shared/`: geometry preprocessing, frozen encoders, feature mapping, and geometric attacks |
+| Evaluation | `src/core/evaluate.py` and `src/protocols/single92.json`: robustness and discriminability evaluation |
+| Visualisation | `src/plot_results.py`: NC/BCR curves and discriminability heatmaps |
 | Method diagrams | `docs/assets/`: framework overview and expert-learning illustration |
 
 ## Data and checkpoints
 
 The evaluation protocol uses six vector layers derived from [OpenStreetMap](https://www.openstreetmap.org/copyright), 20 copyright images, and three detector seeds (42, 73, and 101). Each evaluation map is paired with every copyright image. Robustness is evaluated across 92 attack settings covering coordinate perturbations, geometric transformations, structural edits, and changes in data representation.
 
-Organise the dataset manifest, Shapefiles, copyright images, trained checkpoints, feature caches, and binding key under a common asset directory. Specify this directory with `--root`; asset paths are defined in `代码/主模型/pipeline.py`. Keep all component files of each Shapefile together.
+Organise the dataset manifest, Shapefiles, copyright images, trained checkpoints, feature caches, and binding key under a common asset directory. Specify this directory with `--root`; asset paths are defined in `src/core/pipeline.py`. Keep all component files of each Shapefile together.
 
 ## Environment
 
@@ -54,17 +54,17 @@ Use Python 3.11 on Linux. The implementation uses PyTorch, torchvision, NumPy, S
 ```bash
 git clone https://github.com/zhaohui-1202/MoEMark.git
 cd MoEMark
-python -m pip install -r 代码/requirements.txt
+python -m pip install -r src/requirements.txt
 ```
 
-See [requirements.txt](代码/requirements.txt) for dependency versions.
+See [requirements.txt](src/requirements.txt) for dependency versions.
 
 ## Basic usage
 
 Register a vector layer with a copyright image:
 
 ```bash
-python 代码/运行评测.py \
+python src/run_evaluation.py \
   --stage register \
   --root /path/to/moemark_assets \
   --seed 42 \
@@ -76,7 +76,7 @@ python 代码/运行评测.py \
 Verify a candidate using the corresponding model and registration record:
 
 ```bash
-python 代码/运行评测.py \
+python src/run_evaluation.py \
   --stage verify \
   --root /path/to/moemark_assets \
   --seed 42 \
@@ -92,7 +92,7 @@ The interface reports NC, BCR, the number of matching bits, and the acceptance d
 Run robustness and discriminability evaluation together:
 
 ```bash
-python 代码/运行评测.py \
+python src/run_evaluation.py \
   --stage all \
   --root /path/to/moemark_assets \
   --output outputs/evaluation \
@@ -117,11 +117,11 @@ Use `--stage robustness` or `--stage discriminability` to run either evaluation 
 Regenerate figures from a completed evaluation:
 
 ```bash
-python 代码/运行评测.py --stage plots --output outputs/evaluation
+python src/run_evaluation.py --stage plots --output outputs/evaluation
 ```
 
 For the complete command-line options:
 
 ```bash
-python 代码/运行评测.py --help
+python src/run_evaluation.py --help
 ```

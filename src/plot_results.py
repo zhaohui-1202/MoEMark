@@ -105,11 +105,31 @@ def plot_results(output, protocol, published=None):
     plt.rcParams.update({'font.family': 'DejaVu Sans', 'font.size': 9})
     if published:
         published = Path(published)
-        with (published / '01_主模型鲁棒性' / '92档逐参数结果.csv').open(encoding='utf-8-sig', newline='') as stream:
-            rows = {int(r['case_id']): r for r in csv.DictReader(stream)}
-        assert len(rows) == 92
+        tables = []
+        expected_ids = {c['id'] for c in protocol['cases']}
+        for path in [published / 'robustness.csv', *sorted(published.glob('01_*/*.csv'))]:
+            if not path.is_file():
+                continue
+            with path.open(encoding='utf-8-sig', newline='') as stream:
+                reader = csv.DictReader(stream)
+                if not {'case_id', 'nc', 'bcr'} <= set(reader.fieldnames or []):
+                    continue
+                records = list(reader)
+            if len(records) == len(expected_ids) and {int(r['case_id']) for r in records} == expected_ids:
+                tables.append({int(r['case_id']): r for r in records})
+        if len(tables) != 1:
+            raise ValueError('Expected exactly one robustness CSV containing all 92 setting IDs')
+        rows = tables[0]
         cases = [dict(c, nc=float(rows[c['id']]['nc']), bcr=float(rows[c['id']]['bcr'])) for c in protocol['cases']]
-        matrices = read(published / '02_版权图像与地图区分' / '地图与20图像矩阵.json')
+        matrix_sets = []
+        for path in [published / 'discriminability.json', *sorted(published.glob('02_*/*.json'))]:
+            if path.is_file():
+                data = read(path)
+                if isinstance(data, dict) and {'map', 'image'} <= data.keys():
+                    matrix_sets.append(data)
+        if len(matrix_sets) != 1:
+            raise ValueError('Expected exactly one JSON file containing map and image matrices')
+        matrices = matrix_sets[0]
     else:
         source = output / 'robustness.json'
         if not source.exists():
