@@ -13,8 +13,8 @@ sys.path.insert(0, str(Path(__file__).parent / 'shared'))
 from models import PlainRegistration, Detection
 from image_binding import identity_code, bound_bits
 from map_geometry_binding import category_code, geometry_category, protocol_id
-from v3_fusion_A_spatial_identity import SpatialFiLM, paired
-from v3_model import StructuralMoE, subset_anchors
+from feature_mapping import SpatialFiLM, paired
+from geometry_encoder import StructuralMoE, subset_anchors
 
 DEFAULT_ROOT = Path('/root/autodl-tmp/vector_zw_20261020')
 FEATURE_RUN = 'results/dual_moe_single_watermark_v1'
@@ -131,7 +131,7 @@ class System:
     @torch.inference_mode()
     def encode_image(self, path):
         if self.image_encoder is None:
-            from mamba_image_encoder import ImageEncoder
+            from image_encoder import ImageEncoder
             self.image_encoder = ImageEncoder(pretrained=False).to(self.device)
             path_weights = self.root / 'assets/mamba_image_encoder_final.pth'
             state = torch.load(path_weights, map_location='cpu', weights_only=True)
@@ -183,11 +183,11 @@ class System:
 
 def prepare_candidate(job, output_dir):
 
-    from prepare_file_training import read_metric
-    from v3_data import build_cache, write_and_reload
-    from v3_attack_suite import align_principal
-    from v3_spatial_selected5_attacks import custom_attack
-    from v3_compare_s2a import seed_for
+    from map_preprocessing import read_metric
+    from vector_data import build_cache, write_and_reload
+    from attack_suite import align_principal
+    from structural_attacks import custom_attack
+    from random_seed import seed_for
     row, operation, key = job
     frame, center, scale, metric = read_metric(row['shp'])
     attack = []

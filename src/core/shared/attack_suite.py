@@ -8,7 +8,7 @@ import shapely
 
 from shapely.geometry import Point, MultiPoint, LineString, MultiLineString, Polygon, MultiPolygon, box
 
-from v3_s2_data import execute, distance_unit
+from attack_operations import execute, distance_unit
 
 def map_geometry(g, fn):
     kind=g.geom_type

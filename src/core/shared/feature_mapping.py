@@ -2,7 +2,7 @@ import torch
 
 from torch import nn
 
-from v3_model import FiLMHostResidual as OriginalFiLM
+from geometry_encoder import FiLMHostResidual as OriginalFiLM
 
 class SpatialFiLM(OriginalFiLM):
     def __init__(self,dim=256,rho=.5):

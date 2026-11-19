@@ -8,7 +8,7 @@ import geopandas as gpd
 
 from scipy.spatial import cKDTree
 
-from geometry_v1 import components,resample
+from geometry import components,resample
 
 def regional_tokens(meta):
     xy=meta[:,:2]

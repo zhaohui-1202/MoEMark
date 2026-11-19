@@ -2,7 +2,7 @@ import numpy as np
 
 import torch,shapely
 
-from v3_attack_suite import apply,map_geometry,align_principal
+from attack_suite import apply,map_geometry,align_principal
 
 def custom_attack(frame,op,seed,c,s,m):
     name=op['name']

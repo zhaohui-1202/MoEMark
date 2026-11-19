@@ -53,7 +53,7 @@ class Evaluation:
         self.images = bank['features'][[bank['names'].index(n) for n in names]].float().cuda()
         self.payload = torch.tensor(np.stack([payload(self.root / 'assets/copyright' / n) for n in names]), device='cuda')
         self.codes = torch.stack([identity_code(self.root / 'assets/copyright' / n, self.systems[0].key) for n in names]).cuda()
-        from prepare_file_training import read_metric
+        from map_preprocessing import read_metric
         self.categories = [geometry_category(read_metric(row['shp'])[0].geometry.array) for row in self.files]
         base = self.root / FEATURE_RUN
         manifest = read(base / 'manifest.json')

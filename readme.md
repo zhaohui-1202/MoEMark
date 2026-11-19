@@ -41,6 +41,8 @@ Verification derives the candidate binary feature sequence, recovers the waterma
 | Visualisation | `src/plot_results.py`: NC/BCR curves and discriminability heatmaps |
 | Method diagrams | `docs/assets/`: framework overview and expert-learning illustration |
 
+The shared modules are organised by function: `geometry.py`, `vector_data.py`, and `map_preprocessing.py` prepare vector layers; `geometry_encoder.py`, `image_encoder.py`, and `feature_mapping.py` construct representations; `attack_operations.py`, `attack_suite.py`, and `structural_attacks.py` implement geometric attacks; and `random_seed.py` provides reproducible attack seeds.
+
 ## Data and checkpoints
 
 The evaluation protocol uses six vector layers derived from [OpenStreetMap](https://www.openstreetmap.org/copyright), 20 copyright images, and three detector seeds (42, 73, and 101). Each evaluation map is paired with every copyright image. Robustness is evaluated across 92 attack settings covering coordinate perturbations, geometric transformations, structural edits, and changes in data representation.
